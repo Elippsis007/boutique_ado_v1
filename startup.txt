@@ -9,3 +9,9 @@
 
 -- Run server
 4. python3 manage.py runserver
+
+-- Migrations
+5. python3 manage.py migrate
+
+-- Create a superuser so I can login into admin console.
+6. python3 manage.py createsuperuser (**Not necessary for launching project again.)
