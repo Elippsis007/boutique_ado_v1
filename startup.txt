@@ -1,0 +1,11 @@
+-- Installing Django (**Needs to be done on each launch)
+1. pip3 install Django==3.2
+
+-- Creating project in the current directory (**Not necessary for launching project again.)
+2. django-admin startproject boutique_ado .
+
+-- Create gitignore file (**Not necessary for launching project again.)
+3. touch .gitignore
+
+-- Run server
+4. python3 manage.py runserver
