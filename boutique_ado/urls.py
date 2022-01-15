@@ -19,4 +19,5 @@ from django.urls import path, include # gives me all the urls I need for the log
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('', include('home.urls')),
 ]

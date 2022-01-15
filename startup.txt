@@ -186,9 +186,65 @@ NOTE -- The base template will now act as a framework for our entire project
 
 
 -- A place for my main page content itself to go
-25. Add a block content {% block content %} {% endblock %}
+25. Add a block content {% block content %} 
+    {% endblock %}
 
 -- A place for the JavaScript that I want to load at the end of the body
-26. {% block postload.js %} {% endblock %}
+26. {% block postload.js %} 
+    {% endblock %}
 
 
+-- Creating a "Home App"
+27. Here we can use the "base.html" template to get the "Home page" up and running
+    
+    ** To do this type: python3 manage.py startapp home 
+    Press Enter
+    I need a "templates directory INSIDE the home file:
+    Type: mkdir -p home/templates/home
+    
+    Once created, right click the inner home directory and create a NEW file called: index.html 
+
+
+-- Using the "base template" inside my "index.html" page
+28. Extend "base.html" inside my index.html page.
+
+    * {% extends "base.html" %}
+    * {% load static %}
+
+    Then add a content block with some content in it.
+    * {% block content %}
+        ** To know if this is working, add a h1 element with a message
+      {% endblock %}
+    
+    
+-- I have create a view to view this template, so I go to "views.py"
+29. Define an "index" view:
+    def index(request):
+        """ A view to return the index page """
+        return render(request, 'home/index.html')
+
+
+-- Next copy the project-level urls.py
+30. Create a new file in the "home app" and call it "urls.py"
+    Paste the content inside the "urls.py"
+    A. Remove the doc strings 
+    B. Remove "include"
+    C. Remove all "paths" and add a path that will render views.index with name of home
+        ** path('', views.index, name='home')
+
+    On the same page, it's necessary to "import views" at the top of the page:
+        from . import views
+
+    D. Go to the project-level URL and include the home URLS:
+        path('', include('home.urls')),
+
+    E. Finally I have to add the "home" app to the "Installed Apps" in "settings.py"
+        and connect up my template directories:
+
+        * Add "home" to installed apps -> 'home',
+        * Navigate to "TEMPLATES" and INSIDE the "DIRS" squared-Brackets:
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+
+
+** Advised run a test: python3 manage.py runserver

@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
 
-    {% meta %}
+    {% block meta %}
     <!-- Required meta tags -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
@@ -42,13 +42,13 @@
     {% endif %}
 
     {% block page_header %}
-    {% endbock %}
+    {% endblock %}
 
     {% block content %}
-    {% endbock %}
+    {% endblock %}
 
     {% block postloadjs %}
-    {% endbock %}
+    {% endblock %}
 
   </body>
 </html>
