@@ -1,17 +1,48 @@
 -- Installing Django (**Needs to be done on each launch)
 1. pip3 install Django==3.2
 
--- Creating project in the current directory (**Not necessary for launching project again.)
+
+-- Creating project in the current directory (** Necessary for launching project again.)
 2. django-admin startproject boutique_ado .
+
 
 -- Create gitignore file (**Not necessary for launching project again.)
 3. touch .gitignore
 
+
 -- Run server
 4. python3 manage.py runserver
+
 
 -- Migrations
 5. python3 manage.py migrate
 
+
 -- Create a superuser so I can login into admin console.
 6. python3 manage.py createsuperuser (**Not necessary for launching project again.)
+
+
+-- Installing Allauth
+7. pip3 install django-allauth==0.41.0 (** Necessary for launching project again.)
+    
+    7.2 ** Be sure to get the Allauth "AUTHENTICATION_BACKENDS" to add to our "settings.py" file.
+
+        AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+    7.3 ** Be sure to get the "installed apps" from the document and add to "settings.py" file
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+
+-- Add SITE_ID = 1 to the settings.py
+8. Add SITE_ID = 1 under AUTHENTICATION_BACKENDS
