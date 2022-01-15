@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,6 +80,19 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' # Tells allauth that we want to allow authentication using either usernames/emails
+ACCOUNT_EMAIL_REQUIRED = True # Tells that email is required for registering for the site
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Mandatory for an email address
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True # Will be required for the user to enter their email twice upon registration to eliminate typos
+ACCOUNT_USERNAME_MIN_LENGTH = 4 # Specifies username characther length
+LOGIN_URL = '/accounts/login/' # Specifying a login url
+LOGIN_REDIRECT_URL = '/' # Specifying a url to redirect back to after user logging in.
+
 
 WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 

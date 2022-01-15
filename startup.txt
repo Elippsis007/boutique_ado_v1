@@ -20,6 +20,7 @@
 
 -- Create a superuser so I can login into admin console.
 6. python3 manage.py createsuperuser (**Not necessary for launching project again.)
+    admin / Cristina007
 
 
 -- Installing Allauth
@@ -46,3 +47,55 @@
 
 -- Add SITE_ID = 1 to the settings.py
 8. Add SITE_ID = 1 under AUTHENTICATION_BACKENDS
+
+
+-- Adding allauth URLS to our project "urls.py" file.
+    * Creating a path called accounts/ and it's used to include all of the allauth.urls
+9. Create a "path" => path('accounts/', include('allauth.urls')), 
+
+
+-- Adding "include to "urls.py" file 
+10. In "urls.py" on the line => from django.urls import path, "include" needs to be added 
+    Gives me all the urls I need for the login, logout, password resets etc.
+
+
+-- Run the server and navigate to /admin url to login
+11. Login to the admin console
+
+
+-- Change sites domain
+12. Navigate to sites and give name of site eg. boutique_ado.example.com
+    Change your display name to eg. Boutique Ado
+    ** This is a critical setting if I am using social media authentication
+        This isn't something I am doing now but no harm in doing it in the case that we would
+        use social media authentication in the future.
+
+
+-- Adding EMAIL_BACKEND to "settings.py" file
+13.  By default allauth will send confirmation emails to ANY NEW accounts
+     Those emails have to be temporarily logged to the console so we can get the confirmation links
+
+     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' => Add this under SITE_ID in "settings.py"
+
+
+-- Additional settings for the "settings.py" file
+
+14. ACCOUNT_AUTHENTICATION_METHOD = 'username_email' --> Tells allauth that we want to allow authentication using either usernames/emails
+    ACCOUNT_EMAIL_REQUIRED = True --> Tells that email is required for registering for the site
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory' --> Mandatory for an email address
+    ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True --> Will be required for the user to enter their email twice upon registration to eliminate typos
+    ACCOUNT_USERNAME_MIN_LENGTH = 4 --> Specifies username characther length
+    LOGIN_URL = '/accounts/login/' --> Specifying a login url
+    LOGIN_REDIRECT_URL = '/success' --> Specifying a url to redirect back to after user logging in.  
+
+
+-- Would be a good idea to "freeze-requirements"
+15. pip3 freeze > requirements.txt
+
+
+-- Create templates directory for me to write some frontend code
+16. mkdir templates
+
+-- Create allauth template to hold the customized allauth templates
+17. mkdir templates/allauth
+
