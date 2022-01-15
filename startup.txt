@@ -128,7 +128,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
@@ -149,9 +149,46 @@
 22. Add {% load static %} 
     * Advisable now to commit changes
 
+
+NOTE -- The base template will now act as a framework for our entire project
+        Advisable to organize the base template into blocks so that when it's extended
+        later on I can replace chunks of the blocsk when I need to.
+
+        Wrap the "meta" content in a {% block %} --> {% endblock %}
+        Wrap the "bootstrap css" content in a {% block corecss %} --> {% endblock %}
+        Wrap the "JavaScript" content in a {% block jscore %} --> {% endblock %}
+
+        ** In the case that I want to add any extra "meta", "js", "css" without
+            causing issues to the core requirements, add 3 "EXTRA" blocks
+
+        {% block extra_meta %}
+        {% endblock %}
+
+        {% block extra_css %}
+        {% endblock %}
+
+        {% block extra_js %}
+        {% endblock %}
+
+        <title>Boutique Ado {% block extra_title %}{% endblock %} </title>
+        * This is ideal for when you wish to say Boutique Ado - Products or Contact etc..
+
+
+--  Django messages device
+23. Create a div with class called "message-container" and wrap around {% if messages %} {% endif %}
+
+
+-- Add a block page header which will act as an additional header on pages that use this template
+    and in the case that I want to put something at the top of those pages but underneatht the main header
     
+24. {% block page_header %}
+    {% endblock %}
 
 
+-- A place for my main page content itself to go
+25. Add a block content {% block content %} {% endblock %}
 
+-- A place for the JavaScript that I want to load at the end of the body
+26. {% block postload.js %} {% endblock %}
 
 
