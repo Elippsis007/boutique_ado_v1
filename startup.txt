@@ -99,3 +99,59 @@
 -- Create allauth template to hold the customized allauth templates
 17. mkdir templates/allauth
 
+
+-- Making a copy of the "allauth" templates for customizaton
+18. cp -r ../.pip-modules/lib/python3.8/site-packages/allauth/templates/* ./templates/allauth/
+    * Will create a list of files inside "templates/allauth"
+    
+
+-- Creating a base.html
+19. Right click on the templates directory folder and create new file for our base.html file
+    Here we should go to Bootstrap to get a boilerplate template for the website.
+    ** import jQuery 
+
+
+   <!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+-- Add compatiability support for Edge - To elimiate validation errors when validation HTML
+20. <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    Add this line of code above UTF-8
+
+
+-- Move the JScript src under above the title so that it loads faster
+21.
+
+
+-- Add "load static" to the top of the page above our doc string
+22. Add {% load static %} 
+    * Advisable now to commit changes
+
+    
+
+
+
+
+
