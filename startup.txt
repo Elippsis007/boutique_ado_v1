@@ -331,3 +331,47 @@ NOTE -- The base template will now act as a framework for our entire project
 -- Add another row to the header for the banner
 40. With a template variable called "free_shipping_threshold"
     --> Added css class to the base.css file
+
+
+Product App
+
+-- Copy over images to media folder
+
+-- To create Products app: python3 manage.py startapp Products
+    *** Don't forget to add to "settings.py":
+        Navigate to "settings.py" and then include app 'products',
+
+    Inside the "products" app I need to make a folder called "fixtures"
+        "fixtures" are used to load data very quickly into a Django database
+        to avoid me having to do it manually in the admin console.
+        To do this I can drop .JSON fixture files into the directory of "fixtures"
+        Example: "categories.json"
+                    "products.json"
+        *** These will be used to create all of the products for my store
+
+
+With the fixture files copied over and the product app created: 
+    I need to create some "models" for the fixtures to go in to...
+        "models.py"
+
+** Starting with "categories" to give the products a category.
+    Create a class called: Category(models.Model): --> See models.py
+
+    Create a string method -> see models.py
+
+
+41. --> pip3 install pillow in order for me to use the image field
+
+
+42. Registering the "Product Model" & "Category" in "admin.py"
+
+    from django.contrib import admin
+    from .models import Product, Category
+    --> Register your models here. <--
+    admin.site.register(Product)
+    admin.site.register(Category)
+
+
+43. Using the fixtures with a NEW - python manage.py command
+    --> python3 manage.py loaddata categories (start with categories because the products need to know which categories to go into)
+    --> python3 manage.py loaddata categories
