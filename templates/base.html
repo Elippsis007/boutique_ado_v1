@@ -55,7 +55,60 @@
                   </div>
               </form>
           </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0"></div>
+          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                    <!-- The Dropdown Menu -->
+                    <li class="list-inline-item dropdown">
+                        <!-- This anchor section is the Parent Menu, containing fontawesome icon with "text: My Account" in a paragraph -->
+                        <!-- The "data-toggle" dropdown attribute will give a dropdown menu upon click -->
+                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="text-center">
+                                <div><i class="fas fa-user fa-lg"></i></div>
+                                <p class="my-0">My Account</p>
+                            </div>
+                        </a>
+                        <!-- Dropdown Django template tags determin what to display in the menu -->
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            <!-- If the user is authenticated I want to display a drop-down item for their profile and a link to logout -->
+                            {% if request.user.is_authenticated %}
+                            <!-- If the user is authenticated AND a SUPERUSER -->
+                                {% if request.user.is_superuser %}
+                                <!-- Allows the user to to access link to Manage, Add, Delete products -->
+                                    <a href="" class="dropdown-item">Product Management</a>
+                                {% endif %}
+                                <a href="" class="dropdown-item">My Profile</a> <!-- If Authenticated -->
+                                <!-- The "account_logout URL comes from the 'allauth' URLS in the Project Level URLS" -->
+                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!-- If Authenticated -->
+                            {% else %} <!-- If not Authenticated -->
+                                <!-- The "account_signup URL comes from the 'allauth' URLS in the Project Level URLS" -->
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a> <!-- Display Register if they don't have an account -->
+                                 <!-- The "account_login URL comes from the 'allauth' URLS in the Project Level URLS" -->
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> <!-- Display Login if they don't have an account -->
+                            {% endif %}
+                        </div>
+                    </li>
+                    <!-- This is the shopping cart link, it basically contains a fontawesome icon -->
+                    <li class="list-inline-item">
+                        <!-- This template variable applies classes if there is something in the cart the font will be bold
+                                and if there not it will be normal text -->
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
+                            <div class="text-center">
+                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                <p class="my-0">
+                        <!-- This checks whether the grand total template variable exists -->
+                                    {% if grand_total %}
+                                    <!-- If it does exist then I want to display the total formatter to 2 decimal places -->
+                                        ${{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                    <!-- If it doesn't exist then it will display 0 -->
+                                        $0.00
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+          </div>
         </div>
     </header>
 
