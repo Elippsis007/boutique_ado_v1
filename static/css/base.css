@@ -1,0 +1,92 @@
+html {
+    /* Will allow the h100 classes in vertical centering to work */
+    height: 100%;
+}
+
+body {
+    /* Ensures the images stays put in the center of the page */
+    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    /* The eventual height of the top header */
+    height:calc(100vh - 164px);
+    /* Setting the font color for the website */
+    color: #555;
+    /* Setting the font for the website */
+    font-family: 'Lato';
+}
+
+/* from Bulma --> Ensures tht when I use FontAwesome icons, they will always stay perfectly centered and 
+    and consistent in their sizes */ 
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* This is to maintain consistency with the LOGO font when I call attention to something */
+.logo-font {
+    text-transform: uppercase;
+}
+
+/* This makes it so that the logo only takes up as much space as the text requires and no more */
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    /* This adds 164px of padding to the header container class 
+        to push the body down to the bottom of the main page header 
+        ***THIS IS "The Page Header Block" added at the top of the index.html page in the "Home App" */
+    .header-container {
+        padding-top: 164px;
+    }
+}

@@ -149,6 +149,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# Tells Django where all of my stat files are located
+# ****NEEDS TO BE CHANGED TO TUPLE****
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# Adding these MEDIA paths which is where all uploaded media files will go
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

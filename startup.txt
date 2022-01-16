@@ -248,3 +248,37 @@ NOTE -- The base template will now act as a framework for our entire project
 
 
 ** Advised run a test: python3 manage.py runserver
+
+
+-- Create folders
+31. Create: mkdir static -- Will hold CSS, JS and other static files
+        Create a base.css file INSIDE the static folder
+    Create: mkdir media -- Will hold homepage image and eventually all of the product images and for new prod uploaded by store owner
+        Upload the homepage image into the media folder
+    Create: mkdir static/css
+
+
+-- Add Google Fonts and FontAwesome
+32. Add Google Fonts and FontAwesome to Base.html blocks
+        Google Fonts -> BlockCoreCSS
+        FontAwesome -> BlockCoreJs
+
+
+-- Add Settings to link Static and Media files
+33. Go to "settings.py"
+    ***** This line of code is supposed to be a Tuple *****
+    Under STATIC_URL file -> Add: STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+    Adding these MEDIA paths which is where all uploaded media files will go: 
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+-- Import Settings and Static Function from Django so that Django can SEE my URLS
+33. Go to "urls.py"
+    from django.conf import settings --> Allows Django to see the MEDIA_URL
+    from django.conf.urls.static import static --> Importing static function  
+
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) --> Allows Django to see the MEDIA_URL
+
+*** Test site now and see how it looks :)
