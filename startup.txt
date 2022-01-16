@@ -300,4 +300,34 @@ NOTE -- The base template will now act as a framework for our entire project
         </div>
 
 
---
+-- Create a folder in "Templates" called "includes"
+34. mkdir templates/includes -> A place where I can create small snippets of HTML
+                                Then I can include them in the "base template" using Django
+    
+    Create 2 files in the includes folder/directory:
+        main-nav.html
+        mobile-top-header.html
+
+
+-- Added html snippet to -> mobile-top-header.html
+35. 
+
+
+-- Added html snipper to -> main-nav.html
+36.
+
+
+-- After adding html snippets
+37. Now I have to "include" them into the "base template"
+    *** Place this 
+    -> {% include 'includes/mobile-top-header.html' %} --> Mobile version of the Top Header
+        {% include 'includes/main-nav.html' %}
+
+
+-- Run project to see changes
+38.
+
+
+-- Add another row to the header for the banner
+40. With a template variable called "free_shipping_threshold"
+    --> Added css class to the base.css file
