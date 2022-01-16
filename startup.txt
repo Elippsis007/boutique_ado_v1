@@ -282,3 +282,22 @@ NOTE -- The base template will now act as a framework for our entire project
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) --> Allows Django to see the MEDIA_URL
 
 *** Test site now and see how it looks :)
+
+
+-- Creating another row under <div id="topnav"></div>
+34. <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+    </div>
+    --> Here created new <div></div>
+
+     <div class="row bg-white">
+            <!-- Here is Bootstrap Navbar -->
+                                                *** See the attribute 100% ***
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+        </div>
+
+
+--
