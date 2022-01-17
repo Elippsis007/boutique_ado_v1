@@ -1,0 +1,23 @@
+<!-- Extends/Gives the content coded from the "templates" directory "base.html" file. -->
+{% extends "base.html" %}
+{% load static %}
+
+<!-- Takes the block page header to push the top of it down to the bottom of the main navbar
+    and site header -->
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+        {{ products }}    
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -375,4 +375,8 @@ With the fixture files copied over and the product app created:
 *** Necessary for launching ***
 43. Using the fixtures with a NEW - python manage.py command
     --> python3 manage.py loaddata categories (start with categories because the products need to know which categories to go into)
-    --> python3 manage.py loaddata categories
+    --> python3 manage.py loaddata products
+
+
+44. Setting up views for the products in "views.py"
+    
