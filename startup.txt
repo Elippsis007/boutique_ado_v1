@@ -2,7 +2,7 @@
 1. pip3 install Django==3.2
 
 
--- Creating project in the current directory (** Necessary for launching project again.)
+-- Creating project in the current directory (** NOT Necessary for launching project again.)
 2. django-admin startproject boutique_ado .
 
 
@@ -19,7 +19,7 @@
 
 
 -- Create a superuser so I can login into admin console.
-6. python3 manage.py createsuperuser (**Not necessary for launching project again.)
+6. python3 manage.py createsuperuser (** Necessary for launching project again.)
     admin / Cristina007
 
 
@@ -372,6 +372,7 @@ With the fixture files copied over and the product app created:
     admin.site.register(Category)
 
 
+*** Necessary for launching ***
 43. Using the fixtures with a NEW - python manage.py command
     --> python3 manage.py loaddata categories (start with categories because the products need to know which categories to go into)
     --> python3 manage.py loaddata categories

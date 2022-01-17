@@ -8,6 +8,13 @@ from django.db import models
 # A friendly name (eg. Bed & Bath) which will make that name a little more friendly looking for the Frontend
 # null and blank = True means that the friendly name is optional
 class Category(models.Model):
+    
+    # Fixing the spelling issue on category model by adding a metaclass to the category model.
+    # A Meta class (class Meta:) is a subclass of a Class....
+    class Meta:
+        # variable name for changing the spelling error to correct spelling
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
