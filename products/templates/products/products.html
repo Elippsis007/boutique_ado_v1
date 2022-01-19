@@ -22,35 +22,39 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="product-container col-10 offset-1">
-                <div class="row mt-1 mb-2"></div>
-                <div class="row">
-                    {% for product in products %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
-                                {% for product in products %}
-                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                                    <div class="card h-100 border-0">
-                                        {% if product.image %}
-                                        <a href="">
-                                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                        </a>
-                                        {% else %}
-                                        <a href="">
-                                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                        </a>
-                                        {% endif %}
-                                        <div class="card-body pb-0">
-                                            <p class="mb-0">{{ product.name }}</p>
-                                        </div>
-                                        <div class="card-footer bg-white pt-0 border-0 text-left">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
-                                                    {% if product.rating %}
-                                                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                                                    {% else %}
+<div class="row">
+    <div class="product-container col-10 offset-1">
+        <div class="row mt-1 mb-2"></div>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card h-100 border-0">
+                           <!-- Card is divided into a top which contains the product image -->
+                            <!-- The if statement here renders the produt image using the 
+                                image field URL attribute if an image exists -->
+                                {% if product.image %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                </a>
+                                {% else %}
+                                <!-- If the image doesn't exist it will default to an image from the media folder instead -->
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                </a>
+                                {% endif %}
+                                <!-- The body which contains the product name -->
+                                <div class="card-body pb-0">
+                                    <p class="mb-0">{{ product.name }}</p>
+                                </div>
+                                <!-- Footer which will contain the price and rating of the product -->
+                                <!-- This card footer contains a row and a column which will envelop the product price and rating if it exists -->
+                                <div class="card-footer bg-white pt-0 border-0 text-left">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
+                                            {% if product.rating %}
+                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                                            {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
                                         </div>
@@ -58,6 +62,37 @@
                                 </div> 
                             </div>
                         </div>
+
+                        <!-- With col-12 it renders a full-width column and ends up pushing produts to the next row on ALL screens -->
+                        <!-- Using d-sm-none will fix this issue, although this doesn't add the hr on medium screens -->
+                        {% if forloop.counter|divisibleby:1 %}
+                        <div class="col-12 d-sm-none mb-5">
+                            <hr>
+                        </div>
+                        {% endif %}
+
+                        <!-- I can render this column to be visible for only small and medium screens only when the iteration number of the loop
+                            is divisible by 2 because there will be 2 6x columuns, every set of two product will add up to 12 columns-->
+                        {% if forloop.counter|divisibleby:2 %}
+                        <!-- on full screen don't display hr -->
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                                <hr>
+                            </div>
+                        {% endif %}
+
+                        {% if forloop.counter|divisibleby:3 %}
+                        <!-- We can fix that by displaying block on small screens or larger -->
+                            <div class="col-12 d-lg-block d-xl-none">
+                                <hr>
+                            </div>
+                        {% endif %}
+
+                        {% if forloop.counter|divisibleby:4 %}
+                        <!-- We can fix that by displaying block on small screens or larger -->
+                            <div class="col-12 d-none d-xl-block">
+                                <hr>
+                            </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
