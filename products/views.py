@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Product
 # Create your views here.
 
@@ -14,5 +14,21 @@ def all_products(request):
     }
 
     # This is retruning the product webpage
-                # Context is for when I need to send some things back to the template
+    # Context is for when I need to send some things back to the template
     return render(request, 'products/products.html', context)
+
+
+def product_detail(request, product_id):
+    """ A view to show all product details, including sorting and search queries """
+
+    # Return a product from the database using: product.objects.all()
+    product = get_object_or_404(Product, pk=product_id)
+
+    # Context so that the products will be available in the template
+    context = {
+        'product': product,
+    }
+
+    # This is retruning the product webpage
+                # Context is for when I need to send some things back to the template
+    return render(request, 'products/product_detail.html', context)
