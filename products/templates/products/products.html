@@ -75,21 +75,21 @@
                             is divisible by 2 because there will be 2 6x columuns, every set of two product will add up to 12 columns-->
                         {% if forloop.counter|divisibleby:2 %}
                         <!-- on full screen don't display hr -->
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
 
                         {% if forloop.counter|divisibleby:3 %}
                         <!-- We can fix that by displaying block on small screens or larger -->
-                            <div class="col-12 d-lg-block d-xl-none">
+                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
 
                         {% if forloop.counter|divisibleby:4 %}
                         <!-- We can fix that by displaying block on small screens or larger -->
-                            <div class="col-12 d-none d-xl-block">
+                            <div class="col-12 d-none d-xl-block mb-5">
                                 <hr>
                             </div>
                         {% endif %}
