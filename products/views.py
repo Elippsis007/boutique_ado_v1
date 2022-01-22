@@ -11,16 +11,33 @@ def all_products(request):
     products = Product.objects.all()
     query = None
     categories = None
+    sort = None
+    direction = None
+
 
     # Getting the category parameters
 
     # Seeing if it exists in "if request.GET"
     if request.GET:
-
-        if request.GET:
-            # Checking to see whether sort is in "request.get"
-            if 'sort' in request.GET:
-
+        # Checking to see whether sort is in "request.get"
+        if 'sort' in request.GET:
+            # Setting a variable called 'sortkey' equal to request.get sort
+            sortkey = request.GET['sort']
+            sort = sortkey
+            # To allow case-insensitve sorting on the name field, I first need to make a note of
+            #  of all the products in a new field, annotation lets me add a temporary field on a model 
+            # If sort is in the request then I will also check whether direction is there too
+            
+        # Check to see whether the "sortkey is equal to name"
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+        
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
 
 
         if 'category' in request.GET:
@@ -39,13 +56,17 @@ def all_products(request):
                 return redirect(reverse('products'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query) 
-            products = products.filter(queries)         
+            products = products.filter(queries)
+
+    current_sorting = f'{sort}_{direction}'
+
 
     # Context so that the products will be available in the template
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
+        'current_sorting': current_sorting, 
     }
 
     # This is retruning the product webpage
