@@ -12,10 +12,24 @@ def all_products(request):
     query = None
     categories = None
 
+    # Getting the category parameters
+
+    # Seeing if it exists in "if request.GET"
     if request.GET:
+
+        if request.GET:
+            # Checking to see whether sort is in "request.get"
+            if 'sort' in request.GET:
+
+
+
         if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
+            # If it does exist it will be split into a list
+            categories = request.GET['category'].split(',') 
+            #  Then use the list to filter the current set of "All products" down to only the products whose category name is in the list
+            #  The __ means I'm looking for the name field of the category model.
             products = products.filter(category__name__in=categories)
+            # Filter all categories down to the ones whose name is in the list from the url
             categories = Category.objects.filter(name__in=categories)
 
         if 'q' in request.GET:
